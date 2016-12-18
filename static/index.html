@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+
+      <title>Social home</title>
+      <meta name="description" content="Social Media data">
+      <meta name="author" content="Michael Currin">
+
+     <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+    <style> body {
+                  background-color: powderBlue;
+                   font-family: verdana;
+                 }
+    h3    {
+         font-size: 90%;
+         }
+    </style>
+
+    </head>
+
+    <body>
+
+      <h1>Social Media app</h1>
+      <h2>About</h2>
+
+      <p> This is a Python Flask app hosted on <a href="http://pythonanywhere.com"> pythonanywhere.com</a>. It functions as an API for selected FB post data.
+      <br> The data were extracted from the Facebook Graph API and stored in a SQLite3 database.</p>
+
+
+      <h2>Endpoints</h2>
+
+        <!-- bullet points -->
+        <ul>
+           <li> <a href="/summary"> Summary </a> </li>
+           <li><a href="/posts">Posts</a> </li>
+           <li><a href="/types">Types</a> </li>
+           <li><a href="/posts/photo">Posts - filter by type </a> </li>
+           <li> <a href="/posts?since=2016-02-08&until=2016-02-10"> Posts - filter by date range</a>  with <i>?since=YYYY-MM-DD&until=YYYY-MM-DD </i> </li>
+          <li> <a href="/posts?since=2016-05-01&until=2016-08-10&grouping=day"> Group by day and filter by date range</a> with <i>?grouping=day </i>  </li>
+
+        </ul>
+
+    </body>
+
+</html>
