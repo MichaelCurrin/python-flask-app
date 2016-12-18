@@ -1,5 +1,5 @@
 # python-flask-app
-Flask-based app in Python as a prototype.
+Flask-based app in Python as a prototype, showing public for one FB page.
 
 Based on this tutorial
 
