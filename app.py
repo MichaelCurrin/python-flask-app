@@ -14,7 +14,9 @@ from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 
+
 class Type_Meta(Resource):
+    
     def get(self):
         """
         This returns a uniiue list of post types available, so they can
@@ -29,7 +31,9 @@ class Type_Meta(Resource):
         result = {'Types':data}
         return jsonify(result)
 
+    
 class Summary(Resource):
+    
     def get(self):
         """
         This returns summary data for all time, by Page ID
@@ -47,7 +51,9 @@ class Summary(Resource):
         result = {'Summary':data}
         return jsonify(result)
 
+    
 class Posts_By_Type(Resource):
+    
     def get(self, post_type):
         """
         This returns detailed post data but only for the type specified
@@ -60,7 +66,9 @@ class Posts_By_Type(Resource):
         result = {'Posts':data}
         return jsonify(result)
 
+    
 class Posts_With_Filters(Resource):
+    
     def get(self):
         """
         Returns actual posts, with filters applied if any
@@ -112,7 +120,6 @@ def shutdown():
 """
 
 # Create an engine for connecting to SQLite3.
-# Assuming db name is in your app root folder
 db_name = 'social.db'
 e = create_engine('sqlite:///%s' % db_name)
 
@@ -132,8 +139,8 @@ api.add_resource(Type_Meta, '/types')
 api.add_resource(Posts_With_Filters, '/posts')
 api.add_resource(Posts_By_Type, '/posts/<string:post_type>')
 
+
 if __name__ == '__main__':
     # host='0.0.0.0'
     # host = '127.0.0.1' (default)
-
     app.run(port=5000, debug=True)
