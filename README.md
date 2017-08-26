@@ -1,7 +1,6 @@
-# python-flask-app
-Flask-based app in Python as a prototype, showing public for one FB page.
+# Python Flask App
 
-I was not able to upload a .db file so create an empty file with social.db name.
+Flask-based app in Python as a prototype, showing public data for one FB page.
 
 My app is based on this tutorial
 
