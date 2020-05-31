@@ -14,13 +14,13 @@ class Type_Meta(Resource):
     
     def get(self):
         """
-        This returns a uniiue list of post types available, so they can
+        This returns a unique list of post types available, so they can
         be used in a filtered posts URL if necessary.
         """
         connection = e.connect()
         query = connection.execute('SELECT * FROM vw_post_types;')
 
-        # Note: use i[0] to have list of strings instead of list of lists
+        # Note: use i[0] to have list of strings instead of list of lists.
         data = [i[0] for i in query.cursor.fetchall()]
 
         result = {'Types':data}
@@ -43,7 +43,8 @@ class Summary(Resource):
                                      FROM vw_posts
                                      GROUP BY `Page_ID`;""")
         data = [dict(zip(tuple(query.keys()), i)) for i in query.cursor]
-        result = {'Summary':data}
+        result = {'Summary': data}
+        
         return jsonify(result)
 
     
@@ -58,7 +59,8 @@ class Posts_By_Type(Resource):
         query_str = 'SELECT * FROM vw_posts WHERE `Type`="%s";' % post_type
         query = connection.execute(query_str)
         data = [dict(zip(tuple (query.keys()), i)) for i in query.cursor]
-        result = {'Posts':data}
+        result = {'Posts': data}
+        
         return jsonify(result)
 
     
@@ -96,26 +98,12 @@ class Posts_With_Filters(Resource):
 
         # use *out_key* to describe data as 'Days' or 'Posts'
         result = {out_key:data, 'Count':len(data)}
+        
         return jsonify(result)
+    
 
-"""
-# this gave an error not sufficient permissions
-# further testing required
-
-def shutdown_server():
-    func = request.environ.get('werkzeug.server.shutdown')
-    if func is None:
-        raise RuntimeError('Not running with the Werkzeug Server')
-    func()
-
-@app.route('/shutdown', methods=['POST'])
-def shutdown():
-    shutdown_server()
-    return 'Server shutting down'
-"""
-
-db_name = 'social.db'
-e = create_engine('sqlite:///%s' % db_name)
+DB_NAME = 'social.db'
+e = create_engine('sqlite:///%s' % DB_NAME)
 
 app = Flask(__name__, static_url_path='/static')
 api = Api(app)
