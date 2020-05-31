@@ -2,11 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on 16 Dec 2016
-
-A Python 2.7 app built with Flask.
-It provides an API service from a SQLite3 database
-Where a home page gives the user links to suggested endpoints
-And where queried endpoints retrieve data from SQL and return as JSON.
 """
 __author__ = '@MichaelCurrin'
 
@@ -119,21 +114,16 @@ def shutdown():
     return 'Server shutting down'
 """
 
-# Create an engine for connecting to SQLite3.
 db_name = 'social.db'
 e = create_engine('sqlite:///%s' % db_name)
 
-# create Flask app, with /static as path for html etc. files
 app = Flask(__name__, static_url_path='/static')
-# Create API
 api = Api(app)
 
-# Add home index page
 @app.route('/')
 def root():
     return app.send_static_file('index.html')
 
-# Add API pages
 api.add_resource(Summary, '/summary')
 api.add_resource(Type_Meta, '/types')
 api.add_resource(Posts_With_Filters, '/posts')
@@ -141,6 +131,4 @@ api.add_resource(Posts_By_Type, '/posts/<string:post_type>')
 
 
 if __name__ == '__main__':
-    # host='0.0.0.0'
-    # host = '127.0.0.1' (default)
     app.run(port=5000, debug=True)
