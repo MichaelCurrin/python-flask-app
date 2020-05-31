@@ -23,7 +23,9 @@ class Type_Meta(Resource):
         # Note: use i[0] to have list of strings instead of list of lists.
         data = [i[0] for i in query.cursor.fetchall()]
 
-        result = {'Types':data}
+        result = {'Types'
+                  :data}
+        
         return jsonify(result)
 
     
@@ -70,8 +72,8 @@ class Posts_With_Filters(Resource):
         """
         Returns actual posts, with filters applied if any
         """
-        # set parameters from ?since=XXX&until=XXX&grouping=XXX
-        # default to None
+        # Set parameters from ?since=XXX&until=XXX&grouping=XXX
+        # Default to None
         since = request.args.get('since')
         until = request.args.get('until')
         grouping = request.args.get('grouping')
